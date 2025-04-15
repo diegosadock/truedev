@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.sadock.ecommerce.dto.FaturamentoMensal;
 import br.com.sadock.ecommerce.model.Pedido;
 import br.com.sadock.ecommerce.service.pedido.IPedidoService;
 
@@ -46,6 +47,17 @@ public class PedidoController {
 		if (result != null) {
 			return ResponseEntity.ok(result);
 		}
+		return ResponseEntity.badRequest().build();
+	}
+	
+	@GetMapping("/pedidos/faturamento/{ano}")
+	public ResponseEntity<List<FaturamentoMensal>> recuperarFaturamento(@PathVariable Integer ano) {
+		List<FaturamentoMensal> result = service.recuperarFaturamento(ano);
+		
+		if (result != null) {
+			return ResponseEntity.ok(result);
+		}
+		
 		return ResponseEntity.badRequest().build();
 	}
 
