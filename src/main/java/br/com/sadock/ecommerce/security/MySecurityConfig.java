@@ -19,6 +19,7 @@ public class MySecurityConfig {
 			.requestMatchers(HttpMethod.GET, "/produtos").permitAll()
 			.requestMatchers(HttpMethod.POST, "/usuarios").permitAll()
 			.requestMatchers(HttpMethod.POST, "/login").permitAll()
+			.requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
 			.anyRequest().authenticated().and().cors();
 		
 		http.addFilterBefore(new MyECFilter(), UsernamePasswordAuthenticationFilter.class);
